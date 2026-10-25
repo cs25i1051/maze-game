@@ -6,7 +6,7 @@
 int main() {
     const int ROWS = 9;
     const int COLS = 9;
-    const int SEED = 42;
+    const int SEED = 12345678;
     const int START_ROW = 1;
     const int START_COL = 1;
     const int START_HEALTH = 10;

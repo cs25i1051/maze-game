@@ -22,8 +22,8 @@ class Player{
         void reduceHealth(int health);  //member function for reducing the health of player when it performs a wrong move
         void move(int deltaX,int deltaY);  //member fuction for changing the coordinates of player 
 
-        int getX() const; //return the current row of player by value
-        int getY() const; //return the current column of player by value
+        int getX() const; //Returns the current column
+        int getY() const; //Returns the current row
         int getHealth() const; //return the current health of player 
         int getMovesCount() const;  //return the current value of number of moves of player
 };

@@ -1,3 +1,5 @@
+#pragma once
+#include <vector>
 using namespace std;
 struct cell { //to store the position of cell.
     int x, y;
@@ -18,6 +20,8 @@ class maze{
         ~maze(); //userDefined destructor.
         void mazeGenerate();
         int cellValue(int, int);
+        int getRows() const;
+        int getCols() const;
         bool isWalkable(int, int) const;
         bool isExit(int, int) const;
 };

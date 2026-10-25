@@ -9,6 +9,7 @@ class ScoreBoard {
 private:
     int currentScore;
     int baseScore;
+    int penaltyPoints;
     int movesTracked;
     int healthTracked;
     std::string playerName;

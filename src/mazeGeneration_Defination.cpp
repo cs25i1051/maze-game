@@ -8,8 +8,8 @@
 using namespace std;
 
 maze:: maze(int height, int width, int seed){ //UserDefined constructor.
-    //Checking if maps valid.
-    if(height>1 && width>1){
+    //Checking if map's valid.
+    if(height >= 3 && width >= 4){      //Minimum dimensions required for maze generation
         mapHeight= height;
         mapWidth = width;
         mazeGrid = new int*[mapHeight]; //i.e. stores each rows, i.e. each element of mapHeight.
@@ -24,7 +24,7 @@ maze:: maze(int height, int width, int seed){ //UserDefined constructor.
             }
         }
     }else{
-        cout<<"Invalid height or Width input! Size must be greater than 1."<< endl;
+        cout<<"Invalid maze dimensions! Minimum size is 3 rows and 4 columns."<< endl;
         abort();
     }
 
@@ -57,7 +57,7 @@ vector<cell> maze:: floodFillAlgo(cell initialStart, int** mazeGrid){
     //Initializing all visited to false.
     for(int x=0; x< mapHeight; x++){
         for(int y=0; y< mapWidth; y++){
-            visitedCell=false;
+            visitedCell[x][y]=false;
         }
     }
 
@@ -107,6 +107,16 @@ vector<cell> maze:: floodFillAlgo(cell initialStart, int** mazeGrid){
     delete[] visitedCell;
 
     return tileList; //returning the list.
+}
+
+int maze::getRows() const {
+    // Returns the number of rows in the maze
+    return mapHeight;
+}
+
+int maze::getCols() const {
+    // Returns the number of columns in the maze
+    return mapWidth;
 }
 
 void maze:: mazeGenerate(){
@@ -174,6 +184,9 @@ void maze:: mazeGenerate(){
             else if (gridValue == 0) mazeGrid[x][y] = 1;
         }
     }
+    
+    //Ensure the player's default starting position (1,1) is walkable
+    mazeGrid[1][1] = 0;
 
     //Now using flood-fill algorithm to create region and interconnect them so there exist atleast one path for each walkable tile from start.
     //Creating an region array to store region of each cell.

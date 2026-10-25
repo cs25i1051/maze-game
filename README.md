@@ -1,36 +1,176 @@
-﻿# C++ Terminal Maze Game (OOP Project)
+# C++ Terminal Maze Game (OOP Project)
 
-Welcome to our mid-semester C++ Object-Oriented Programming project. This is a single-player terminal-based maze game designed to demonstrate core OOP principles.
+A single-player, terminal-based Maze Game developed in C++ as part of our mid-semester Object-Oriented Programming project.
+
+The project demonstrates fundamental OOP concepts through modular class design, dynamic maze generation, player movement, collision detection, and terminal-based interaction.
 
 ## 🎮 Gameplay
-Navigate your character (`P`) through the dynamically generated grid to reach the Exit (`E`) while avoiding walls (`#`). 
 
-**Controls:** 
-- `W` : Move Up
-- `A` : Move Left
-- `S` : Move Down
-- `D` : Move Right
+The objective is to navigate the player (`P`) through a randomly generated maze, avoiding walls (`#`) and reaching the exit (`E`).
+
+### Controls
+
+| Key | Action |
+|---|---|
+| `W` | Move Up |
+| `A` | Move Left |
+| `S` | Move Down |
+| `D` | Move Right |
+| `Q` | Quit Game |
+
+Keyboard input is processed instantly without requiring the Enter key.
+
+### Features
+
+- Seed-based random maze generation
+- Dynamic 2D maze allocation
+- Player movement with wall collision detection
+- Exit detection and victory condition
+- Player health and movement tracking
+- Scoreboard with movement and collision penalties
+- Terminal-based rendering and instant keyboard input
+- Support for configurable maze dimensions
+
+### Scoring System
+
+- Initial score: **1000 points**
+- Successful movement: **−10 points**
+- Wall collision: **−5 points**
+- Minimum score: **0 points**
+
+The player's remaining score and total successful moves are displayed during gameplay.
 
 ## 🏗️ Project Structure
-To prevent merge conflicts, the codebase is split:
-- **\`include/\`** : Contains all header files (\`.h\`) outlining class definitions.
-- **\`src/\`** : Contains all implementation files (\`.cpp\`) including the main loop.
 
-## 🧠 OOP Concepts Implemented
-1. **Dynamic Memory Management**: Using \`new\` and \`delete[]\` to generate scaling maze grids safely.
-2. **Encapsulation**: Private class members accessed only via explicit getters/setters.
-3. **Constructors & Destructors**: Safe initialization of the engine and prevention of memory leaks.
-4. **Inheritance & Reusability**: Base \`GameObject\` classes for player and enemies.
-5. **Composition**: The \`GameEngine\` containing instances of the Maze and Player.
-6. **Operator Overloading & Friend Functions**: Custom terminal rendering logic by overloading the \`<<\` operator.
-
-## 🚀 How to Compile and Run
-Compile the game from the root directory of the repository:
-
-```bash
-g++ src/*.cpp -Iinclude -o mazegame
+```text
+maze-game/
+├── include/
+│   ├── GameEngine.h
+│   ├── Player.h
+│   ├── ScoreBoard.h
+│   ├── UI.h
+│   └── mazeGeneration_Declaration.h
+├── src/
+│   ├── GameEngine.cpp
+│   ├── Player.cpp
+│   ├── ScoreBoard.cpp
+│   ├── UI.cpp
+│   ├── main.cpp
+│   └── mazeGeneration_Defination.cpp
+├── .gitignore
+└── README.md
 ```
 
-Run the executable:
-- **Linux/Mac:** `./mazegame`
-- **Windows:** `mazegame.exe`
+### Module Responsibilities
+
+| Module | Responsibility |
+|---|---|
+| Maze | Generates the maze, manages dynamically allocated grid memory, checks walls and exit positions |
+| Player | Maintains coordinates, health, and movement count |
+| GameEngine | Validates movements, updates the player, and detects victory |
+| UI | Handles terminal rendering, keyboard input, and game messages |
+| ScoreBoard | Tracks player statistics, calculates scores, and applies penalties |
+| main.cpp | Initializes objects and manages the game loop |
+
+## 🧠 OOP Concepts Demonstrated
+
+1. **Classes and Objects:** Separate classes for Maze, Player, GameEngine, UI, and ScoreBoard.
+2. **Encapsulation:** Private data members accessed through public member functions.
+3. **Constructors and Destructors:** Object initialization and automatic resource cleanup.
+4. **Dynamic Memory Management:** Using `new` and `delete[]` to allocate and deallocate 2D maze arrays.
+5. **Composition:** `GameEngine` contains Maze and Player objects.
+6. **Operator Overloading:** Overloaded `<<`, `++`, `-`, and `==` operators for rendering, statistics, and comparisons.
+7. **Friend Functions:** The scoreboard's overloaded `<<` operator accesses private scoreboard data through friendship.
+
+## 🚀 Compilation and Execution
+
+### Prerequisites
+
+- GCC/G++ compiler supporting C++17 or later
+- Terminal or command-line environment
+- Git (optional, for cloning)
+
+No external graphics libraries or game engines are required.
+
+### Step 1 — Clone the Repository
+
+```bash
+git clone https://github.com/MerlinVoid/maze-game.git
+cd maze-game
+```
+
+Alternatively, download the repository as a ZIP file and extract it.
+
+### Step 2 — Compile the Game
+
+Open a terminal in the project's root directory.
+
+**Windows (PowerShell, CMD, or MinGW-w64):**
+
+```bash
+g++ -std=c++17 -Wall -Wextra -Iinclude src/*.cpp -o mazegame.exe
+```
+
+**Linux / macOS:**
+
+```bash
+g++ -std=c++17 -Wall -Wextra -Iinclude src/*.cpp -o mazegame
+```
+
+The command compiles all C++ source files in `src/` and links them into a single executable.
+
+### Step 3 — Run the Game
+
+**Windows PowerShell:**
+
+```powershell
+.\mazegame.exe
+```
+
+**Windows CMD:**
+
+```cmd
+mazegame.exe
+```
+
+**Linux / macOS:**
+
+```bash
+./mazegame
+```
+
+### Step 4 — Play
+
+1. Press any key to start.
+2. Use `W`, `A`, `S`, and `D` to navigate the maze.
+3. Avoid walls and find a path to the exit.
+4. Reach `E` to win, or press `Q` to quit.
+
+## ⚙️ Default Game Configuration
+
+The default configuration is defined in `src/main.cpp`.
+
+| Parameter | Default |
+|---|---|
+| Maze dimensions | 9 × 9 |
+| Random seed | 12345678 |
+| Starting row | 1 |
+| Starting column | 1 |
+| Initial health | 10 |
+| Initial score | 1000 |
+
+The maze generator currently expects an eight-digit decimal seed.
+
+Using the same seed and maze dimensions allows reproducible maze generation.
+
+## 📝 Notes
+
+- The game is designed for terminal execution.
+- The maze uses `0` for walkable cells and `1` for walls internally.
+- Player coordinates follow `X = column` and `Y = row`.
+- Health is stored and displayed but has no damage mechanic in the current version.
+- The game ends when the player reaches the exit or chooses to quit.
+
+## 🔮 Future Enhancements
+
+Possible extensions include enemies, additional levels, health-based gameplay, difficulty settings, and graphical rendering.
