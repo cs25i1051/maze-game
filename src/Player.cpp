@@ -7,7 +7,7 @@ using namespace std;
 
 //parametrized Constructor
 Player::Player(int x,int y , int health){  
-    this->pos.x=x;  //using this pointer for directly accessing the private datamember of the object of the class to which respect function call has been happened.
+    this->pos.x=x;  //using this pointer for directly accessing the private datamember of the object of the class to which respect function call has been hapened
     this->pos.y=y; 
     this->health=health;
     this->movesCount=0;
@@ -28,7 +28,7 @@ void Player::move(int deltaX,int deltaY){
     this->movesCount++;
 }
 
-int Player::getX() const{  // all get member functions have been declared const for ensuring that function will not modify any non static data members of the class.   
+int Player::getX() const{  //all get member functions have been declared const for ensuring that function will not modify any non static data members of the class 
     return this->pos.x;
 }
 
