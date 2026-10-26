@@ -11,7 +11,7 @@
 UI::UI(int rows, int cols) : gridRows(rows), gridCols(cols) {}
 
 void UI::clearScreen() const {
-    // ANSI escape sequence to clear screen and move cursor to top-left without flicker
+    //ANSI escape sequence to clear screen and move cursor to top-left without flicker
     std::cout << "\033[2J\033[H";
 }
 
@@ -29,7 +29,7 @@ void UI::renderControls() const {
     std::cout << "\n Controls: [W] Up  [A] Left  [S] Down  [D] Right  |  [Q] Quit\n";
 }
 
-// Overloaded << operator to render the current state of GameEngine
+//render the current state of GameEngine
 std::ostream& operator<<(std::ostream& os, const GameEngine& engine) {
     const maze& maze = engine.getMaze();
     const Player& player = engine.getPlayer();
