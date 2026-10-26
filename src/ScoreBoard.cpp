@@ -25,7 +25,7 @@ int ScoreBoard::getMoves() const {
     return this->movesTracked;
 }
 
-// Prefix ++ overload: increments moves and adjusts score
+//increments moves and adjusts score
 ScoreBoard& ScoreBoard::operator++() {
     this->movesTracked++;
     if (this->currentScore >= 10) {
@@ -34,7 +34,7 @@ ScoreBoard& ScoreBoard::operator++() {
     return *this;
 }
 
-// Binary - overload: returns a new ScoreBoard with penalty deducted
+//returns a new ScoreBoard with penalty deducted
 ScoreBoard ScoreBoard::operator-(int penalty) const {
     ScoreBoard temp = *this;
 
@@ -55,7 +55,6 @@ bool ScoreBoard::operator==(int targetMoves) const {
     return this->movesTracked == targetMoves;
 }
 
-// Friend function overloading << for clean HUD output
 std::ostream& operator<<(std::ostream& os, const ScoreBoard& sb) {
     os << "+------------------------------------------+\n";
     os << "| PLAYER: " << sb.playerName 
