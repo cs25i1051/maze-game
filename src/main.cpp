@@ -1,12 +1,14 @@
 #include <iostream>
+#include<ctime>
 #include "GameEngine.h"
 #include "ScoreBoard.h"
 #include "UI.h"
 
 int main() {
+    srand(time(0));
     const int ROWS = 9;
     const int COLS = 9;
-    const int SEED = 12345678;
+    const int SEED = 10000000 + rand() % 80000000; //Since 8-Bit seed.
     const int START_ROW = 1;
     const int START_COL = 1;
     const int START_HEALTH = 10;
